@@ -130,18 +130,21 @@ Code | Name | Price
 
 print("")
 
+# lists with valid answers for string check for  pay method and way of order collection
 price = 0
 payment_ans = ['cash', 'credit']
 collect_ans = ['delivery', 'pickup']
 
 make_statement("Pizza Purchasing Program", "🍕")
 
+# optional instructions for new users
 print()
 want_instructions = string_check("Would you like to view your instructions? ")
 
 if want_instructions == "yes":
     instructions()
 
+# ask for order details until the user adds up to 5 pizzas
 while loop < 5:
     print()
 
@@ -149,6 +152,7 @@ while loop < 5:
 
     print()
 
+    # ask user for the flavour of pizza they would like to order
     pizza = int_check("What is the code of the pizza you would like to order? ", 1, 10)
     if 1 < pizza <= 5:
         price += 5
@@ -156,10 +160,12 @@ while loop < 5:
         price += 10
 
     toppings_ask = string_check("Would you like to add toppings to this pizza? ")
+    # if user wants toppings for this pizza, display the toppings menu and ask which one they want
     if toppings_ask == "yes":
 
         toppings_menu()
 
+        # add topping price to total price depending on type of topping
         toppings = int_check("What is the code of the toppings would you like to add to this pizza? ", 1, 5)
         if toppings <= 3:
             price += 2
@@ -169,10 +175,11 @@ while loop < 5:
         toppings = 0
 
     diet_ask = string_check("Would you like to specify any dietary requirements for this pizza?")
+    # ask user if they have any diet requirements and show available ones
     if diet_ask == "yes":
 
         diet_menu()
-
+        # genetic dietary requirements are cheaper than chosen like vegetarian
         diet = int_check("What dietary requirement would you like to add to this pizza?", 1, 5)
         if diet <= 2:
             price += 2
@@ -183,13 +190,16 @@ while loop < 5:
 
     loop += 1
 
+    # ask user if they want to add another pizza to their cart
     if loop < 5:
         do_loop = string_check("Would you like to add another pizza to your order? ")
+        # if they don't want another pizza, leave the loop
         if do_loop == "no":
             break
     else:
         break
 
+# inform the user of the amount of pizzas they have added. If they reach the max, tell them then continue
 if loop == 5:
     print("You have added the maximum amount of pizzas (5) to your cart.")
 else:
@@ -201,17 +211,20 @@ else:
 collect = string_check("Would you like to pick up your order or have it delivered to you? Delivery orders cost an "
                        "extra 10% surcharge ", collect_ans, 1)
 
+# apply surcharge to price and ask for address
 if collect == "delivery":
     address = input("Where do you want us to deliver your order? ")
     surcharge = 1.1
     price = price * surcharge
 
+# ask for users name, contact and payment method
 name = not_blank("What is your name? ")
 
 contact = not_blank("Please enter your email or phone number so we can contact you when your order is ready ")
 
 pay_method = string_check(f"Your order costs ${price}. Will you be paying with cash or credit? ", payment_ans, 2)
 
+# end program with friendly message
 print()
 print("Thank you for ordering from the Pizza Purchasing Program. We will contact you when your order is ready ")
 print()

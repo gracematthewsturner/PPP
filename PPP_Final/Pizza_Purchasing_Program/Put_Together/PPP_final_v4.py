@@ -222,7 +222,7 @@ name = not_blank("What is your name? ")
 
 contact = not_blank("Please enter your email or phone number so we can contact you when your order is ready ")
 
-pay_method = string_check(f"Your order costs ${price}. Will you be paying with cash or credit? ", payment_ans, 2)
+pay_method = string_check(f"Your order costs ${price:.2f}. Will you be paying with cash or credit? ", payment_ans, 2)
 
 # end program with friendly message
 print()
